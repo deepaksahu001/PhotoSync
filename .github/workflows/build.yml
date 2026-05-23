@@ -35,3 +35,8 @@ jobs:
         with:
           name: PhotoSync-debug
           path: "**/*.apk"
+
+          - name: Get SHA-1
+        run: |
+          cd PhotoSync
+          ./gradlew signingReport --no-daemon 2>&1 | grep -A 5 "Variant: debug"
