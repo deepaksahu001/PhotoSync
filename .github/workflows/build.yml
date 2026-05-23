@@ -13,7 +13,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Unzip project
-        run: unzip PhotoSync_Android_v8.zip
+        run: unzip PhotoSync_Android_v9.zip
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
