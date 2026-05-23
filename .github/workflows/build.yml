@@ -27,8 +27,8 @@ jobs:
           cd PhotoSync
           ./gradlew assembleDebug --no-daemon --stacktrace 2>&1 | head -150
 
-      -- name: Upload APK
-  uses: actions/upload-artifact@v4
-  with:
-    name: PhotoSync-debug
-    path: "**/app-debug.apk"
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: PhotoSync-debug
+          path: "**/app-debug.apk"
