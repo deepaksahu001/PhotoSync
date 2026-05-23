@@ -15,15 +15,8 @@ jobs:
       - name: Unzip project
         run: unzip PhotoSync_Android_v2.zip
 
-      - name: Show extracted structure
-        run: find . -maxdepth 3 -type f -name "gradlew" 
-
       - name: Copy google-services.json
-        run: |
-          GRADLEW_PATH=$(find . -name "gradlew" | head -1)
-          PROJECT_DIR=$(dirname $GRADLEW_PATH)
-          cp google-services.json $PROJECT_DIR/app/google-services.json
-          echo "Project dir: $PROJECT_DIR"
+        run: cp google-services.json PhotoSync/app/google-services.json
 
       - name: Set up JDK 17
         uses: actions/setup-java@v4
@@ -33,14 +26,12 @@ jobs:
 
       - name: Build Debug APK
         run: |
-          GRADLEW_PATH=$(find . -name "gradlew" | head -1)
-          PROJECT_DIR=$(dirname $GRADLEW_PATH)
-          chmod +x $GRADLEW_PATH
-          cd $PROJECT_DIR
-          ./gradlew assembleDebug
+          chmod +x PhotoSync/gradlew
+          cd PhotoSync
+          ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: PhotoSync-debug
-          path: "**/app/build/outputs/apk/debug/app-debug.apk"
+          path: PhotoSync/app/build/outputs/apk/debug/app-debug.apk
