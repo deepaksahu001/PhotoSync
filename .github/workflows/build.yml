@@ -27,6 +27,12 @@ jobs:
           cd PhotoSync
           ./gradlew assembleDebug --no-daemon
 
+      - name: Get SHA-1
+        run: |
+          chmod +x PhotoSync/gradlew
+          cd PhotoSync
+          ./gradlew signingReport --no-daemon 2>&1 | grep -A 5 "Variant: debug"
+
       - name: Find APK
         run: find . -name "*.apk" -type f
 
@@ -35,8 +41,3 @@ jobs:
         with:
           name: PhotoSync-debug
           path: "**/*.apk"
-
-          - name: Get SHA-1
-        run: |
-          cd PhotoSync
-          ./gradlew signingReport --no-daemon 2>&1 | grep -A 5 "Variant: debug"
