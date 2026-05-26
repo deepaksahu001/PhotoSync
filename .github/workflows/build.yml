@@ -4,6 +4,7 @@ name: Build APK
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -33,6 +34,3 @@ jobs:
         with:
           name: PhotoSync-debug
           path: "**/*.apk"
-
-          # Build v20 - Full English UI - 26 May 2026
-        name: Build APK
