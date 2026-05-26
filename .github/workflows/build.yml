@@ -32,3 +32,6 @@ jobs:
         with:
           name: PhotoSync-debug
           path: "**/*.apk"
+
+          # Build v20 - Full English UI
+      name: Build APK
